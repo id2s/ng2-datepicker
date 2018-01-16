@@ -165,7 +165,7 @@ export class NgDatepickerComponent implements ControlValueAccessor, OnInit, OnCh
 
   setDate(i: number): void {
     this.date = this.days[i].date;
-    this.value = this.date;
+    this.value = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), this.date.getDay()));
     this.init();
     this.close();
   }
