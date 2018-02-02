@@ -7,7 +7,10 @@
     </div>
     <div class="column is-6 is-offset-3">
       <div class="datepicker-container">
-        <ng-datepicker [(ngModel)]="date" [options]="options"></ng-datepicker>
+        <form [formGroup]="form">
+          <ng-datepicker formControlName="date" [options]="options"></ng-datepicker>
+          <button (click)="onReset()">Reset form</button>
+        </form>
       </div>
     </div>
   </div>

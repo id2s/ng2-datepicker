@@ -269,8 +269,12 @@ export class NgDatepickerComponent implements ControlValueAccessor, OnInit, OnCh
       this.date = val;
       this.innerValue = val;
       this.init();
-        this.displayValue = this.innerValue ? format(this.innerValue, this.displayFormat, this.locale) : '';
+      this.displayValue = this.innerValue ? format(this.innerValue, this.displayFormat, this.locale) : '';
       this.barTitle = format(startOfMonth(val), this.barTitleFormat, this.locale);
+    } else {
+      this.date = new Date();
+      this.innerValue = val;
+      this.init();
     }
   }
 
