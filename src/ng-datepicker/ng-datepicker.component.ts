@@ -142,6 +142,15 @@ export class NgDatepickerComponent implements ControlValueAccessor, OnInit, OnCh
     }
   }
 
+  onChange() {
+    const splittedDate = this.displayValue.split('/');
+    if (splittedDate.length === 3 && splittedDate[2].length === 4 && splittedDate[1].length === 2 && splittedDate[0].length >= 1) {
+      this.date = new Date(`${splittedDate[2]}-${splittedDate[1]}-${splittedDate[0]}`);
+      this.value = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()));
+      this.init();
+    }
+  }
+
   setOptions(): void {
     const today = new Date(); // this const was added because during my tests, I noticed that at this level this.date is undefined
     this.minYear = this.options && this.options.minYear || getYear(today) - 30;
@@ -292,12 +301,13 @@ export class NgDatepickerComponent implements ControlValueAccessor, OnInit, OnCh
     }
 
     const input = this.elementRef.nativeElement.querySelector('.ngx-datepicker-input');
+    const calendar = this.elementRef.nativeElement.querySelector('.calendar');
 
     if (input == null) {
       return;
     }
 
-    if (e.target === input || input.contains(<any>e.target)) {
+    if (e.target === input || e.target === calendar || input.contains(<any>e.target) || calendar.contains(<any>e.target)) {
       return;
     }
 

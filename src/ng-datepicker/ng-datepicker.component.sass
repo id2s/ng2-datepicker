@@ -26,6 +26,19 @@ $color: #1A91EB
 .ngx-datepicker-container
   position: relative
 
+  span.calendar
+    position: absolute
+    right: 10px
+    display: block
+    bottom: 0
+    z-index: 2
+    top: 5px
+    width: 18px
+    height: 18px
+
+    &:hover
+      cursor: pointer
+
   .ngx-datepicker-input
     padding: 5px 10px
     font-size: 14px
@@ -110,7 +123,7 @@ $color: #1A91EB
           &.is-selected
             background: $color
             color: $white
-          
+
           &.is-disabled
             cursor: not-allowed
             color: $text-secondary

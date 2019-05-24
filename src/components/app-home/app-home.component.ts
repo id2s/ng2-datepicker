@@ -11,7 +11,8 @@ import {FormBuilder} from "@angular/forms";
 export class AppHomeComponent {
     date: Date;
     options: DatepickerOptions = {
-        locale: enLocale
+        locale: frLocale,
+        displayFormat: 'DD/MM/YYYY'
     };
 
     form = this.fb.group({
