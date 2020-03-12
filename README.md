@@ -1,3 +1,30 @@
+# Fork of ol ng2-datepicker
+
+## Compile library
+
+Compile it with :
+
+```shell script
+cd .build && docker-compose up node
+```
+Commit modified files 
+
+## Install Library
+
+```shell script
+npm install -P @id2s/ng2-datepicker@latest
+```
+
+## Update library
+And update package version in your project by modifying.
+
+```
+npm update
+```
+
+Or modify commit value in **package-lock.json**
+
+
 # ng2-datepicker
 
 Angular 2+ Simple and minimal datepicker component

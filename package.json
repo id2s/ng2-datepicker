@@ -1,39 +1,41 @@
 {
-  "name": "ng2-datepicker",
-  "version": "2.1.8",
-  "main": "bundles/ng2-datepicker.umd.js",
-  "repository": {
+  "_args": [
+    [
+      "git+https://git@github.com/tplessis/ng2-datepicker.git",
+      "/app"
+    ]
+  ],
+  "_from": "git+https://git@github.com/tplessis/ng2-datepicker.git",
+  "_id": "ng2-datepicker@git+https://git@github.com/tplessis/ng2-datepicker.git#b45afd8f6c2110c02e4e0b7989e3742e6e393956",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/ng2-datepicker",
+  "_phantomChildren": {},
+  "_requested": {
     "type": "git",
-    "url": "git+https://github.com/jkuri/ng2-datepicker.git"
+    "raw": "git+https://git@github.com/tplessis/ng2-datepicker.git",
+    "rawSpec": "git+https://git@github.com/tplessis/ng2-datepicker.git",
+    "saveSpec": "git+https://git@github.com/tplessis/ng2-datepicker.git",
+    "fetchSpec": "https://git@github.com/tplessis/ng2-datepicker.git",
+    "gitCommittish": null
   },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://git@github.com/tplessis/ng2-datepicker.git#b45afd8f6c2110c02e4e0b7989e3742e6e393956",
+  "_spec": "git+https://git@github.com/tplessis/ng2-datepicker.git",
+  "_where": "/app",
   "authors": [
     "Jan Kuri <jkuri88@gmail.com>"
   ],
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jkuri/ng2-datepicker/issues"
   },
-  "homepage": "https://github.com/jkuri/ng2-datepicker#readme",
-  "scripts": {
-    "clean": "rimraf dist lib bundles ./**/*.ngsummary.* ./**/*.ngfactory.* ./**/*.ngstyle.*",
-    "prestart": "npm run clean",
-    "start": "webpack-dev-server --env.dev --env.serve --progress --hot",
-    "start:noopen": "webpack-dev-server --env.dev --env.serve --env.noOpen",
-    "prestart:aot": "npm run clean",
-    "start:aot": "webpack-dev-server --env.aot --env.dev --env.serve --progress",
-    "prebuild": "npm run clean",
-    "build": "webpack --env.dev --progress --hide-modules",
-    "prebuild:aot": "npm run clean",
-    "build:aot": "webpack --env.dev --env.aot --progress --hide-modules",
-    "prebuild:prod": "npm run clean",
-    "build:prod": "webpack --env.prod --env.aot --progress --hide-modules -p",
-    "test": "karma start",
-    "pretest:e2e": "webdriver-manager update -- --standalone",
-    "test:e2e": "protractor ./protractor.conf.js",
-    "test:ci:e2e": "node ./e2e/run.js",
-    "build:dist": "webpack --config webpack.dist.js -p",
-    "prepublishOnly": "npm run build:dist"
+  "dependencies": {
+    "date-fns": "^1.28.5",
+    "ngx-slimscroll": "^3.5.2"
   },
+  "description": "Angular 2+ Simple and minimal datepicker component",
   "devDependencies": {
     "@angular/animations": "^4.4.3",
     "@angular/common": "^4.4.3",
@@ -89,8 +91,33 @@
     "webpack-merge": "^4.1.0",
     "zone.js": "^0.8.17"
   },
-  "dependencies": {
-    "date-fns": "^1.28.5",
-    "ngx-slimscroll": "^3.5.2"
-  }
+  "homepage": "https://github.com/jkuri/ng2-datepicker#readme",
+  "license": "MIT",
+  "main": "bundles/ng2-datepicker.umd.js",
+  "name": "ng2-datepicker",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkuri/ng2-datepicker.git"
+  },
+  "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js --env.dev --progress --hide-modules",
+    "build:aot": "./node_modules/webpack/bin/webpack.js --env.dev --env.aot --progress --hide-modules",
+    "build:dist": "./node_modules/webpack/bin/webpack.js --config webpack.dist.js -p",
+    "build:prod": "./node_modules/webpack/bin/webpack.js --env.prod --env.aot --progress --hide-modules -p",
+    "clean": "./node_modules/rimraf/bin.js dist lib bundles ./**/*.ngsummary.* ./**/*.ngfactory.* ./**/*.ngstyle.*",
+    "prebuild": "npm run clean",
+    "prebuild:aot": "npm run clean",
+    "prebuild:prod": "npm run clean",
+    "prepublishOnly": "npm run build:dist",
+    "prestart": "npm run clean",
+    "prestart:aot": "npm run clean",
+    "pretest:e2e": "webdriver-manager update -- --standalone",
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.dev --env.serve --progress --hot",
+    "start:aot": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.aot --env.dev --env.serve --progress",
+    "start:noopen": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.dev --env.serve --env.noOpen",
+    "test": "./node_modules/karma/bin/karma start",
+    "test:ci:e2e": "node ./e2e/run.js",
+    "test:e2e": "protractor ./protractor.conf.js"
+  },
+  "version": "2.1.8"
 }

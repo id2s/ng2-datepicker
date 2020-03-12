@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  node:
+    build:
+      context: ./node/
+      args:
+        - UID=${DOCKER_UID}
+        - GID=${DOCKER_GID}
+        - VERSION=${NODE_VERSION}
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    command: "sh -c 'npm install --no-bin-links && npm run build:dist'"
+    volumes:
+      - ../:/app
