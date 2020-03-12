@@ -31,6 +31,8 @@ export interface DatepickerOptions {
   readonly?: boolean;
   minDate?: Date;
   maxDate?: Date;
+  nullable?: boolean;
+
 }
 
 /**
@@ -69,15 +71,16 @@ export class NgDatepickerComponent implements ControlValueAccessor, OnInit, OnCh
 
   private positions = ['bottom-left', 'bottom-right', 'top-left', 'top-right'];
 
-  innerValue: Date;
+  innerValue?: Date;
   readonly: boolean;
-  displayValue: string;
+  displayValue?: string;
   displayFormat: string;
-  date: Date;
+  date?: Date;
   barTitle: string;
   barTitleFormat: string;
   minYear: number;
   maxYear: number;
+  nullable: boolean;
   firstCalendarDay: number;
   view: string;
   years: { year: number; isThisYear: boolean }[];
@@ -148,6 +151,12 @@ export class NgDatepickerComponent implements ControlValueAccessor, OnInit, OnCh
       this.date = new Date(`${splittedDate[2]}-${splittedDate[1]}-${splittedDate[0]}`);
       this.value = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()));
       this.init();
+    }else if(this.nullable){
+      this.date = null;
+      this.value = null;
+      this.innerValue = null;
+      this.displayValue = '';
+      this.init();
     }
   }
 
@@ -155,6 +164,7 @@ export class NgDatepickerComponent implements ControlValueAccessor, OnInit, OnCh
     const today = new Date(); // this const was added because during my tests, I noticed that at this level this.date is undefined
     this.minYear = this.options && this.options.minYear || getYear(today) - 30;
     this.maxYear = this.options && this.options.maxYear || getYear(today) + 30;
+    this.nullable = this.options && this.options.nullable || false;
     this.displayFormat = this.options && this.options.displayFormat || 'MMM D[,] YYYY';
     this.barTitleFormat = this.options && this.options.barTitleFormat || 'MMMM YYYY';
     this.firstCalendarDay = this.options && this.options.firstCalendarDay || 0;
@@ -273,7 +283,8 @@ export class NgDatepickerComponent implements ControlValueAccessor, OnInit, OnCh
     this.isOpened = false;
   }
 
-  writeValue(val: Date) {
+  writeValue(val?: Date) {
+    
     if (val) {
       this.date = val;
       this.innerValue = val;
@@ -281,7 +292,8 @@ export class NgDatepickerComponent implements ControlValueAccessor, OnInit, OnCh
       this.displayValue = this.innerValue ? format(this.innerValue, this.displayFormat, this.locale) : '';
       this.barTitle = format(startOfMonth(val), this.barTitleFormat, this.locale);
     } else {
-      this.date = new Date();
+
+      this.date = this.nullable?null:new Date();
       this.innerValue = val;
       this.init();
     }
